@@ -55,6 +55,16 @@ app.post("/edit/post", async (req, res) => {
     }
 });
 
+app.post("/delete", async (req, res) => {
+    const postId = req.query.postId;
+    try {
+        const response = await axios.delete(`${API_URL}/api/delete/postId/${postId}`);
+        res.redirect("/");
+    } catch (error) {
+        res.render("index.ejs")
+    }
+});
+
 app.get("/new", (req, res) => {
     res.render("modify.ejs",
         {

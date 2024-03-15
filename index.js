@@ -91,6 +91,22 @@ app.put("/api/update/post", (req, res) => {
     res.json(updatedPost);
 });
 
+app.delete("/api/delete/postId/:id", (req, res) => {
+    const indexPostToDelete = parseInt(req.params.id);
+    const searchIndex = posts.findIndex(post => post.id === indexPostToDelete);
+    const postToDelete = posts[searchIndex];
+
+    if (searchIndex !== -1) {
+        posts.splice(searchIndex, 1);
+        res.status(200)
+        res.json(postToDelete);
+    } else {
+        res
+            .status(404)
+            .json({ error: `Joke with id: ${postToDelete} not found. No jokes were deleted.` });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
