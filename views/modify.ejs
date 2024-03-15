@@ -10,11 +10,18 @@
 
 <body>
     <div class="container">
-        <h1 id="edit-post-header">Edit Post</h1>
-        <input id="new-post-title" type="text" placeholder="Enter title" required>
-        <textarea id="new-post-content" type="text" placeholder="Enter content" required></textarea>
-        <input id="new-post-author" type="text" placeholder="Enter author" required>
-        <button id="update-post-btn">Update Post</button>
+        <% if(option==="edit" ) { %>
+            <h1 id="edit-post-header">Edit Post</h1>
+            <% } else { %>
+                <h1 id="edit-post-header">New Post</h1>
+                <% } %>
+                    <form id="modify-post-form" action="/new/post" method="POST">
+                        <input id="new-post-title" type="text" placeholder="Enter title" name="title" required>
+                        <textarea id="new-post-content" type="text" placeholder="Enter content" name="content"
+                            required></textarea>
+                        <input id="new-post-author" type="text" placeholder="Enter author" name="author" required>
+                        <button id="update-post-btn">Update Post</button>
+                    </form>
     </div>
 </body>
 

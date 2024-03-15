@@ -29,9 +29,40 @@ let posts = [
 ]
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("/posts", (req, res) => {
     res.json(posts);
+});
+
+app.post("/api/post", (req, res) => {
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const monthIndex = today.getMonth() + 1;
+    const day = today.getDate();
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+
+    const month = monthNames[monthIndex - 1];
+
+    const newPostId = posts.length + 1;
+    const newPostTitle = req.body.title;
+    const newPostContent = req.body.content;
+    const newPostAuthor = req.body.author;
+    const newPostDate = `${month}, ${day} ${year}`;
+
+    const newPost = {
+        id: newPostId,
+        title: newPostTitle,
+        content: newPostContent,
+        author: newPostAuthor,
+        date: newPostDate
+    };
+
+    posts.push(newPost);
+    res.json(newPost);
 });
 
 app.listen(port, () => {

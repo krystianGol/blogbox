@@ -8,20 +8,37 @@ const API_URL = "http://localhost:4000";
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
     try {
-        const response = await axios.get(API_URL);
+        const response = await axios.get(`${API_URL}/posts`);
         const data = response.data;
         console.log(data)
         res.render("index.ejs", { posts: data });
     } catch (error) {
-        res.render("index.ejs",)
+        res.render("index.ejs")
+    }
+});
+
+app.post("/new/post", async (req, res) => {
+    try {
+        const response = await axios.post(`${API_URL}/api/post`, req.body);
+        res.redirect("/");
+    } catch (error) {
+        res.render("index.ejs")
     }
 });
 
 app.get("/edit", (req, res) => {
-    res.render("modify.ejs");
+    res.render("modify.ejs",
+        {
+            option: "edit"
+        });
+});
+
+app.get("/new", (req, res) => {
+    res.render("modify.ejs", { option: "new" });
 });
 
 app.listen(port, (req, res) => {
