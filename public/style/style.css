@@ -104,3 +104,11 @@ body {
 #update-post-btn:hover {
     background-color: #3fd677;
 }
+
+#posts-list {
+    list-style-type: none;
+}
+
+.post-container {
+    margin-bottom: 30px;
+}

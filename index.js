@@ -30,8 +30,10 @@ let posts = [
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get()
+app.get("/", (req, res) => {
+    res.json(posts);
+});
 
-app.listeing(port, () => {
+app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });

@@ -17,23 +17,37 @@
             <button type="button" class="btn btn-success" onclick="window.location.href = '/new'">New Post</button>
             <hr />
         </div>
-        <div class="post-container">
-            <h2 id="post-title">Exploring the Depths: The Enigmatic World of Deep Sea Creatures</h2>
-            <p id="post-date">March 10, 2024</p>
-            <p id="post-content">In the vast expanse of the ocean's abyssal zones lies a world that remains largely
-                unexplored by humans. From the eerie anglerfish to the graceful gulper eel, the creatures that inhabit
-                these
-                depths are as fascinating as they are mysterious. Join us on a journey into the deep sea to uncover the
-                secrets of these remarkable beings, their unique adaptations, and the challenges they face in their
-                extreme
-                environment."</p>
-            <p id="post-author">By: Marina Ramirez</p>
-            <div class="edit-delete-btn-container">
-                <button type="button" class="btn btn-primary" onclick="window.location.href = '/edit'">Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                </form>
-            </div>
-        </div>
+        <% if (locals.posts) { %>
+            <ul id="posts-list">
+                <% posts.forEach(post=> { %>
+                    <li>
+                        <div class="post-container">
+                            <h2 id="post-title">
+                                <%=post.title %>
+                            </h2>
+                            <p id="post-date">
+                                <%=post.date %>
+                            </p>
+                            <p id="post-content">
+                                <%=post.content %>
+                            </p>
+                            <p id="post-author">
+                                <%=post.author %>
+                            </p>
+                            <div class="edit-delete-btn-container">
+                                <button type="button" class="btn btn-primary"
+                                    onclick="window.location.href = '/edit'">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                                </form>
+                                <hr />
+                            </div>
+                        </div>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>Error</p>
+                <% } %>
     </div>
 </body>
 
