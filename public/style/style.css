@@ -12,6 +12,7 @@ body {
 .container {
     height: auto;
     width: 800px;
+    font-family: "Madimi One", sans-serif;
     background-color: aliceblue;
     margin-top: 30px;
     border-radius: 14px;
@@ -54,6 +55,7 @@ body {
 }
 
 #new-post-title {
+    font-family: "Madimi One", sans-serif;
     width: calc(100% - 50px);
     padding: 14px;
     border: none;
@@ -65,6 +67,7 @@ body {
 }
 
 #new-post-content {
+    font-family: "Madimi One", sans-serif;
     width: calc(100% - 50px);
     margin-top: 20px;
     padding: 14px;
@@ -80,6 +83,7 @@ body {
 }
 
 #new-post-author {
+    font-family: "Madimi One", sans-serif;
     width: calc(100% - 50px);
     padding: 14px;
     border: none;
@@ -92,6 +96,7 @@ body {
 }
 
 #update-post-btn {
+    font-family: "Madimi One", sans-serif;
     width: calc(100% - 25px);
     background-color: #50fe91;
     margin-top: 15px;
@@ -123,4 +128,9 @@ body {
     font-size: 19px;
     padding: 15px;
     font-weight: bold;
+}
+
+#edit-btn {
+    padding-left: 22px;
+    padding-right: 22px;
 }

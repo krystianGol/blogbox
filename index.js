@@ -14,7 +14,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 const month = monthNames[monthIndex - 1];
 
-let postDate = `${month}, ${day} ${year}`;
+let postDate = `${month} ${day}, ${year}`;
 
 
 let posts = [
