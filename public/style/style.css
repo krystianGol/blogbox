@@ -17,6 +17,7 @@ body {
     border-radius: 14px;
     padding-left: 25px;
     padding-bottom: 25px;
+    margin-bottom: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -111,4 +112,9 @@ body {
 
 .post-container {
     margin-bottom: 30px;
+}
+
+.empty-blog {
+    text-align: center;
+    align-items: center;
 }

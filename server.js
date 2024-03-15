@@ -33,13 +33,15 @@ app.get("/edit", async (req, res) => {
     try {
         const response = await axios.get(`${API_URL}/posts`);
         const data = response.data;
+        const postIndex = data.findIndex(post => post.id === parseInt(req.query.postId));
+
         res.render("modify.ejs",
             {
                 option: "Edit post",
-                id: data[req.query.postId - 1].id,
-                title: data[req.query.postId - 1].title,
-                content: data[req.query.postId - 1].content,
-                author: data[req.query.postId - 1].author,
+                id: data[postIndex].id,
+                title: data[postIndex].title,
+                content: data[postIndex].content,
+                author: data[postIndex].author,
             });
     } catch (error) {
         res.render("index.ejs")

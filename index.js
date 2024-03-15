@@ -98,6 +98,7 @@ app.delete("/api/delete/postId/:id", (req, res) => {
 
     if (searchIndex !== -1) {
         posts.splice(searchIndex, 1);
+        console.log(posts);
         res.status(200)
         res.json(postToDelete);
     } else {
