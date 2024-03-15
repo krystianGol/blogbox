@@ -5,23 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/style.css">
-    <title>Edit Blog</title>
+    <title>
+        <%=option%>
+    </title>
 </head>
 
 <body>
     <div class="container">
-        <% if(option==="edit" ) { %>
+        <% if(option==="Edit post" ) { %>
             <h1 id="edit-post-header">Edit Post</h1>
+            <form id="modify-post-form" action="/edit/post" method="POST">
+                <input id="new-post-title" type="text" name="title" value='<%=title%>' required>
+                <textarea id="new-post-content" type="text" name="content" required><%=content%></textarea>
+                <input id="new-post-author" type="text" name="author" value='<%=author%>' required>
+                <button id="update-post-btn" type="submit" name="id" value=<%=id%>>Update Post</button>
+            </form>
             <% } else { %>
-                <h1 id="edit-post-header">New Post</h1>
+                <h1 id="new-post-header">New Post</h1>
+                <form id="modify-post-form" action="/new/post" method="POST">
+                    <input id="new-post-title" type="text" placeholder="Enter title" name="title" required>
+                    <textarea id="new-post-content" type="text" placeholder="Enter content" name="content"
+                        required></textarea>
+                    <input id="new-post-author" type="text" placeholder="Enter author" name="author" required>
+                    <button id="update-post-btn">Update Post</button>
+                </form>
                 <% } %>
-                    <form id="modify-post-form" action="/new/post" method="POST">
-                        <input id="new-post-title" type="text" placeholder="Enter title" name="title" required>
-                        <textarea id="new-post-content" type="text" placeholder="Enter content" name="content"
-                            required></textarea>
-                        <input id="new-post-author" type="text" placeholder="Enter author" name="author" required>
-                        <button id="update-post-btn">Update Post</button>
-                    </form>
     </div>
 </body>
 

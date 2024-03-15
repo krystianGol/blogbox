@@ -4,6 +4,19 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 4000;
 
+const today = new Date();
+const year = today.getFullYear();
+const monthIndex = today.getMonth() + 1;
+const day = today.getDate();
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+
+const month = monthNames[monthIndex - 1];
+
+let postDate = `${month}, ${day} ${year}`;
+
+
 let posts = [
     {
         id: 1,
@@ -37,32 +50,45 @@ app.get("/posts", (req, res) => {
 
 app.post("/api/post", (req, res) => {
 
-    const today = new Date();
-    const year = today.getFullYear();
-    const monthIndex = today.getMonth() + 1;
-    const day = today.getDate();
-
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-
-    const month = monthNames[monthIndex - 1];
-
     const newPostId = posts.length + 1;
     const newPostTitle = req.body.title;
     const newPostContent = req.body.content;
     const newPostAuthor = req.body.author;
-    const newPostDate = `${month}, ${day} ${year}`;
 
     const newPost = {
         id: newPostId,
         title: newPostTitle,
         content: newPostContent,
         author: newPostAuthor,
-        date: newPostDate
+        date: postDate
     };
 
     posts.push(newPost);
     res.json(newPost);
+});
+
+app.put("/api/update/post", (req, res) => {
+    const postId = parseInt(req.body.id);
+    const postTitle = req.body.title;
+    const postContent = req.body.content;
+    const postAuthor = req.body.author;
+    const newPostDate = postDate;
+
+    const searchIndex = posts.findIndex(post => post.id === postId);
+
+    const updatedPost = {
+        id: postId,
+        title: postTitle,
+        content: postContent,
+        author: postAuthor,
+        date: newPostDate
+    }
+
+    console.log("New ", updatedPost);
+    console.log("Old ", posts[searchIndex]);
+
+    posts[searchIndex] = updatedPost;
+    res.json(updatedPost);
 });
 
 app.listen(port, () => {

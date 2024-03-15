@@ -14,7 +14,6 @@ app.get("/", async (req, res) => {
     try {
         const response = await axios.get(`${API_URL}/posts`);
         const data = response.data;
-        console.log(data)
         res.render("index.ejs", { posts: data });
     } catch (error) {
         res.render("index.ejs")
@@ -30,15 +29,37 @@ app.post("/new/post", async (req, res) => {
     }
 });
 
-app.get("/edit", (req, res) => {
-    res.render("modify.ejs",
-        {
-            option: "edit"
-        });
+app.get("/edit", async (req, res) => {
+    try {
+        const response = await axios.get(`${API_URL}/posts`);
+        const data = response.data;
+        res.render("modify.ejs",
+            {
+                option: "Edit post",
+                id: data[req.query.postId - 1].id,
+                title: data[req.query.postId - 1].title,
+                content: data[req.query.postId - 1].content,
+                author: data[req.query.postId - 1].author,
+            });
+    } catch (error) {
+        res.render("index.ejs")
+    }
+});
+
+app.post("/edit/post", async (req, res) => {
+    try {
+        const response = await axios.put(`${API_URL}/api/update/post`, req.body);
+        res.redirect("/");
+    } catch (error) {
+        res.render("index.ejs")
+    }
 });
 
 app.get("/new", (req, res) => {
-    res.render("modify.ejs", { option: "new" });
+    res.render("modify.ejs",
+        {
+            option: "New post"
+        });
 });
 
 app.listen(port, (req, res) => {

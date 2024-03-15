@@ -34,21 +34,25 @@
                             <p id="post-author">
                                 <%=post.author %>
                             </p>
-                            <div class="edit-delete-btn-container">
-                                <button type="button" class="btn btn-primary"
-                                    onclick="window.location.href = '/edit'">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                                </form>
+                            <form action="/edit">
+                                <div class="edit-delete-btn-container">
+                                    <button id="edit-btn" type="submit" class="btn btn-primary" name="postId"
+                                        value=<%=post.id%>>Edit</button>
+                            </form>
+                            <form action="/delete">
+                                <button id="delete-btn" type="submit" class="btn btn-danger" name="postId"
+                                    value=<%=post.id%>>Delete</button>
                                 <hr />
-                            </div>
+                            </form>
                         </div>
-                    </li>
-                    <% }); %>
-            </ul>
-            <% } else { %>
-                <p>Error</p>
-                <% } %>
     </div>
+    </li>
+    <% }); %>
+        </ul>
+        <% } else { %>
+            <p>Error</p>
+            <% } %>
+                </div>
 </body>
 
 </html>
